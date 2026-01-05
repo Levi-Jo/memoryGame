@@ -18,3 +18,11 @@ h1 {
   color:#ffcc0a;
   text-shadow: -0.2rem -0.2rem 0 #3b6bb2, 0.2rem -0.2rem 0 #3b6bb2, -0.2rem 0.2rem 0 #3b6bb2, 0.2rem 0.2rem 0 #3b6bb2;
 }
+.darkened{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 100vh;
+  width: 100vw;
+}

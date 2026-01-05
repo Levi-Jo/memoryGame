@@ -15,6 +15,11 @@ function App() {
           <Route path="/contact" element={<h2>Contact Page</h2>} />
           <Route path="*" element={<h2>404 Not Found</h2>}/>
         </Route>
+        <Route element={<GameLayout />}>
+          <Route path="/easy" element={<Game level="easy" />} />
+          <Route path="/medium" element={<Game level="medium" />} />
+          <Route path="/hard" element={<Game level="hard" />} />
+        </Route>
       </Routes>
     </Router>
   )

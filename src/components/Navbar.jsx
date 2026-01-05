@@ -7,9 +7,36 @@ function Navbar() {
         <h1 className={styles.title}>Memory Game</h1>
         <nav>
             <ul>
-                <li><NavLink className={isActive ? styles.link+styles.active : styles.link} to="/home">Home</NavLink></li>
-                <li><NavLink className={isActive ? styles.link+styles.active : styles.link} to="/about">About</NavLink></li>
-                <li><NavLink className={isActive ? styles.link+styles.active : styles.link} to="/contact">Contact</NavLink></li>
+              <li>
+                <NavLink
+                  to="/home"
+                  className={({ isActive }) =>
+                    isActive ? `${styles.link} ${styles.active}` : styles.link
+                  }
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) =>
+                    isActive ? `${styles.link} ${styles.active}` : styles.link
+                  }
+                >
+                  About
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/contact"
+                  className={({ isActive }) =>
+                    isActive ? `${styles.link} ${styles.active}` : styles.link
+                  }
+                >
+                  Contact
+                </NavLink>
+              </li>
             </ul>
         </nav>
     </header>
