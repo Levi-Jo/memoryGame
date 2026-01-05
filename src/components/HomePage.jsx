@@ -7,9 +7,9 @@ export function HomePage() {
         <h2>Gotta remember'em all!</h2>
         <h3>Choose your difficulty to start:</h3>
         <ul>
-            <Link to="/easy"><button className={styles.startButton}>Easy</button></Link>
-            <Link to="/medium"><button className={styles.startButton}>Medium</button></Link>
-            <Link to="/hard"><button className={styles.startButton}>Hard</button></Link>
+            <Link to="/easy"><button className={styles.button}>Easy</button></Link>
+            <Link to="/medium"><button className={styles.button}>Medium</button></Link>
+            <Link to="/hard"><button className={styles.button}>Hard</button></Link>
         </ul>
         
     </>

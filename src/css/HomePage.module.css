@@ -28,6 +28,11 @@ button{
         transform: scale(0.9);
     }
 }
+styles.button{
+    border:none;
+    background-color: transparent;
+    cursor: pointer;
+}
 ul{
     list-style:none;
     padding:0;
