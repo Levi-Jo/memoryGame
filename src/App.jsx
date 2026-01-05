@@ -7,7 +7,7 @@ import HomePage from './components/HomePage.jsx'
 import Game from './components/Game.jsx'
 function App() {
 
-
+  console.log('API Key:', import.meta.env.VITE_API_KEY);
   return (
     <Router>
       <Routes>

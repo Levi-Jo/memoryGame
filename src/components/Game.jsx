@@ -1,6 +1,8 @@
 import React from 'react'
-
+import TCGdex from '@tcgdex/sdk'
 function Game({ level }) {
+
+    const tcgdex = new TCGdex('en');
     let totalCards
     switch(level) {
         case 'easy':
@@ -16,10 +18,16 @@ function Game({ level }) {
             totalCards = 12
             break;
     }
+    
+    const cardFetch = async () => {
+        const card = await tcgdex.card.get('swsh3-136');
+        console.log(card);
+    }
+    cardFetch();
 
-  return (
-    <div>{totalCards}</div>
-  )
+    return (
+        <div>{totalCards}</div>
+    )
 }
 
 export default Game
