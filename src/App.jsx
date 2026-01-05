@@ -1,8 +1,10 @@
 import React from 'react'
-import Layout from './components/Layout.jsx'
+import Layout from './components/Layouts/Layout.jsx'
+import GameLayout from './components/Layouts/GameLayout.jsx'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.css'
 import HomePage from './components/HomePage.jsx'
+import Game from './components/Game.jsx'
 function App() {
 
 
