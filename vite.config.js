@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://api.pokemontcg.io/v2",
+        target: "https://api.tcgdex.net/v2/en/cards",
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api/, ""),
       },
