@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styles from '../css/PokemonCard.module.css'
 import { useState } from 'react'
 function PokemonCard({ pokemon, history, setHistory, isFlipped, setIsFlipped }) {
