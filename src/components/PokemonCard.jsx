@@ -1,8 +1,9 @@
 import React from 'react'
 
-function PokemonCard() {
+function PokemonCard({ pokemon }) {
   return (
-    <div>PokemonCard</div>
+    console.log(pokemon),
+    <img src={pokemon.images.large} alt={pokemon.name} />
   )
 }
 
