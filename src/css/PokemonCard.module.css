@@ -8,12 +8,13 @@
     transform-style: preserve-3d;
     transition: transform 0.6s ease-in-out
 }
+
 .card.cardFlipped{
-    animation: flip 0.5s;
+    animation: flip 0.7s;
     animation-fill-mode: forwards;
 }
 .card.cardNotFlipped{
-    animation: flipBack 0.5s;
+    animation: flipBack 0.7s;
     animation-fill-mode:forwards;
 }
 
