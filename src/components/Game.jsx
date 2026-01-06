@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { use } from 'react'
 import styles from '../css/Game.module.css'
 import PokemonCard from './PokemonCard';
 import { useState,useEffect } from 'react';
@@ -22,6 +22,7 @@ function Game({ level }) {
     const [pokemonCards, setPokemonCards] = useState("");
     const [history, setHistory] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [isFlipped, setIsFlipped] = useState(false);
         useEffect(() => {
         setLoading(true);
         let data
@@ -49,6 +50,13 @@ function Game({ level }) {
         };
         fetchPokemon();
         }, [totalCards]);
+        useEffect(() => {
+            if(pokemonCards){
+                const shuffledCards = [...pokemonCards].sort(() => Math.random() - 0.5);
+                setPokemonCards(shuffledCards);
+                setIsFlipped(true);
+            }
+        }, [isFlipped]);
 
     console.log(loading);
     console.log(pokemonCards);
@@ -56,14 +64,14 @@ function Game({ level }) {
     return (
         <div>
             {loading ? (
-                <p>Loading...</p> 
+                <img src="../src/assets/pokeball.png" alt="Loading..." className='Loading' />
             ) : (
                 <div className={styles.gameContainer}>
                     <p>Level: {level}</p>
                     <p>Total Cards: {totalCards}</p>
                     <div className={styles.cardGrid}>
                         {pokemonCards && pokemonCards.map((pokemon, index) => (
-                            <PokemonCard history={history} setHistory={setHistory} key={index} pokemon={pokemon} className={styles.card}/>
+                            <PokemonCard history={history} setHistory={setHistory} key={index} pokemon={pokemon} className={styles.card} isFlipped={isFlipped} setIsFlipped={setIsFlipped} />
                         ))}
                     </div>
                 </div>
