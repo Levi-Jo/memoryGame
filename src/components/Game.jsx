@@ -20,6 +20,7 @@ function Game({ level }) {
             break;
     }
     const [pokemonCards, setPokemonCards] = useState("");
+    const [history, setHistory] = useState([]);
     const [loading, setLoading] = useState(true);
         useEffect(() => {
         setLoading(true);
@@ -38,7 +39,12 @@ function Game({ level }) {
             setLoading(false);
             for(let i=0;i<totalCards;i++){
                 let index = Math.floor(Math.random() * data.length);
-                setPokemonCards(Prev => [...Prev, data[index]]);
+                if(data[index].image){
+                    setPokemonCards(Prev => [...Prev, data[index]]);
+                }else{
+                    i--;
+                }
+                
             }}
         };
         fetchPokemon();
@@ -46,6 +52,7 @@ function Game({ level }) {
 
     console.log(loading);
     console.log(pokemonCards);
+
     return (
         <div>
             {loading ? (
@@ -56,7 +63,7 @@ function Game({ level }) {
                     <p>Total Cards: {totalCards}</p>
                     <div className={styles.cardGrid}>
                         {pokemonCards && pokemonCards.map((pokemon, index) => (
-                            <PokemonCard key={index} pokemon={pokemon} className={styles.card} />
+                            <PokemonCard history={history} setHistory={setHistory} key={index} pokemon={pokemon} className={styles.card}/>
                         ))}
                     </div>
                 </div>

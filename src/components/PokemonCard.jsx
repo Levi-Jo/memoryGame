@@ -1,12 +1,37 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from '../css/PokemonCard.module.css'
-function PokemonCard({ pokemon }) {
-  return (
-    console.log(pokemon),
-    <div className={styles.card}>
-        <img src={pokemon.image+"/high.png"} alt={pokemon.name} className={styles.cardImage}/>
+import { useState } from 'react'
+function PokemonCard({ pokemon, history, setHistory }) {
 
+    const [isFlipped, setIsFlipped] = useState(false);
+    
+
+  return (
+    <>
+    {isFlipped ? (
+    <div className={styles.card+" "+styles.cardFlipped} onClick={() => setIsFlipped(false)}>
+        <img src={pokemon.image+"/high.png"} alt={pokemon.name} className={styles.cardImage} onClick={()=>{
+            setHistory((Prevhistory) => [pokemon.id,...Prevhistory]);
+            console.log(history);
+        }}/>
+        <div className={styles.back}>
+
+        </div>
     </div>
+    ) : (
+    <div className={styles.cardNotFlipped+" "+styles.card} onClick={() => setIsFlipped(true)}>
+        <img src={pokemon.image+"/high.png"} alt={pokemon.name} className={styles.cardImage} onClick={()=>{
+            setHistory((Prevhistory) => [pokemon.id,...Prevhistory]);
+            console.log(history);
+        }}/>
+        <div className={styles.back}>
+
+        </div>
+    </div>
+
+    )}
+
+    </>
   )
 }
 
