@@ -4,10 +4,10 @@ import PokemonCard from './PokemonCard';
 import { useState,useEffect } from 'react';
 function Game({ level }) {
 
-    const [pokemonCards, setPokemonCards] = useState("");
+    const [pokemonCards, setPokemonCards] = useState([]);
     const [history, setHistory] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [isFlipped, setIsFlipped] = useState(false);
+    const [isFlipped, setIsFlipped] = useState(true);
     let totalCards;
     switch(level){
         case "easy":
@@ -23,40 +23,65 @@ function Game({ level }) {
             totalCards = 6;
     }
     
+useEffect(() => {
+  const controller = new AbortController();
+  const signal = controller.signal;
+  setLoading(true);
+
+  const fetchPokemon = async () => {
+    try {
+      const apiKey = import.meta.env.VITE_API_KEY;
+      const res = await fetch('/api', {
+        headers: { 'X-Api-Key': apiKey },
+        signal,
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      if (!data || !Array.isArray(data)) throw new Error('No data');
+
+      // build local array then set state once
+      const cards = [];
+      for (let i = 0; i < totalCards; i++) {
+        const idx = Math.floor(Math.random() * data.length);
+        const item = data[idx];
+        if (item && item.image) cards.push(item);
+        else i--;
+      }
+
+      if (!signal.aborted) {
+        setPokemonCards(cards);
+      }
+    } catch (err) {
+      if (err.name === 'AbortError') {
+        console.log('Fetch aborted');
+        return;
+      }
+      console.error('Error fetching Pokemon data:', err);
+    } finally {
+      if (!signal.aborted){
+        switch(level){
+            case "easy":
+                setTimeout(() => setLoading(false), 1000);
+                break;
+            case "medium":
+                setTimeout(() => setLoading(false), 1500);
+                break;
+            case "hard":
+                setTimeout(() => setLoading(false), 3000);
+                break;
+            default:
+                setTimeout(() => setLoading(false), 4000);
+        }
+ 
+      } 
+    }
+  };
+
+  fetchPokemon();
+  return () => controller.abort();
+}, [totalCards]); // include deps that should restart/cancel the fetch
         useEffect(() => {
-        setLoading(true);
-        let data
-        const fetchPokemon = async () => {
-            try {
-            const apiKey = import.meta.env.VITE_API_KEY;
-            const res = await fetch(`api`, {
-                headers: { 'X-Api-Key': apiKey }
-            });
-            if (!res.ok) throw new Error(`HTTP ${res.status}`);
-            data = await res.json();
-            } catch (err) {
-            console.error('Error fetching Pokemon data:', err);
-            } finally {
-            setLoading(false);
-            for(let i=0;i<totalCards;i++){
-                let index = Math.floor(Math.random() * data.length);
-                if(data[index].image){
-                    if(i===0){
-                        setPokemonCards([data[index]]);
-                        
-                    }else{
-                        setPokemonCards(Prev => [...Prev, data[index]]);
-                    }
-                }else{
-                    i--;
-                }
-                
-            }}
-        };
-        fetchPokemon();
-        }, [totalCards]);
-        useEffect(() => {
-            if(pokemonCards){
+            if(pokemonCards.length > 0){
                 setIsFlipped(false);
                 setTimeout(() => {
                 const shuffledCards = [...pokemonCards].sort(() => Math.random() - 0.5);
@@ -68,23 +93,19 @@ function Game({ level }) {
         }, [history]);
     return (
         <div>
-            {loading ? (
-                <img src="../src/assets/pokeball.png" alt="Loading..." className='Loading' />
-            ) : (
-                <div className={styles.gameContainer}>
+                <img src="../src/assets/pokeball.png" alt="Loading..." className='Loading' style={{display: loading ? 'block' : 'none'}}/>
+                <div className={styles.gameContainer} style={{display: loading ? 'none' : 'block'}}>
                     <div>
                     <p>Level: {level}</p>
                     <p>Total Cards: {totalCards}</p>
                     </div>
-                    
                     <p>Score: {history.length}</p>
                     <div className={styles.cardGrid}>
-                        {pokemonCards && pokemonCards.map((pokemon, index) => (
-                            <PokemonCard history={history} setHistory={setHistory} key={index} pokemon={pokemon} className={styles.card} isFlipped={isFlipped} setIsFlipped={setIsFlipped} />
+                        {pokemonCards.length > 0 && pokemonCards.map((pokemon, index) => (
+                            <PokemonCard history={history} setHistory={setHistory} key={index} pokemon={pokemon} isFlipped={isFlipped} setIsFlipped={setIsFlipped} totalCards={totalCards} />
                         ))}
                     </div>
                 </div>
-            )}
         </div>
     )
 }

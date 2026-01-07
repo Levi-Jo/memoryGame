@@ -10,11 +10,11 @@
 }
 
 .card.cardFlipped{
-    animation: flip 0.7s;
+    animation: flip 0.5s;
     animation-fill-mode: forwards;
 }
 .card.cardNotFlipped{
-    animation: flipBack 0.7s;
+    animation: flipBack 0.5s;
     animation-fill-mode:forwards;
 }
 
@@ -28,6 +28,7 @@
 }
 .back{
     width: 100%;
+    min-height: 150px;
     height: 100%;
     position-anchor: --card;
     position: absolute;
