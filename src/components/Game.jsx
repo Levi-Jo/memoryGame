@@ -10,13 +10,13 @@ function Game({ level }) {
     const [isFlipped, setIsFlipped] = useState(true);
     let totalCards;
     switch(level){
-        case "easy":
+        case "Easy":
             totalCards = 6;
             break;
-        case "medium":
+        case "Medium":
             totalCards = 12;
             break;
-        case "hard":
+        case "Hard":
             totalCards = 18;
             break;
         default:
@@ -39,7 +39,6 @@ useEffect(() => {
       const data = await res.json();
       if (!data || !Array.isArray(data)) throw new Error('No data');
 
-      // build local array then set state once
       const cards = [];
       for (let i = 0; i < totalCards; i++) {
         const idx = Math.floor(Math.random() * data.length);
@@ -60,13 +59,13 @@ useEffect(() => {
     } finally {
       if (!signal.aborted){
         switch(level){
-            case "easy":
+            case "Easy":
                 setTimeout(() => setLoading(false), 1000);
                 break;
-            case "medium":
+            case "Medium":
                 setTimeout(() => setLoading(false), 1500);
                 break;
-            case "hard":
+            case "Hard":
                 setTimeout(() => setLoading(false), 3000);
                 break;
             default:
@@ -95,7 +94,7 @@ useEffect(() => {
         <div>
                 <img src="../src/assets/pokeball.png" alt="Loading..." className='Loading' style={{display: loading ? 'block' : 'none'}}/>
                 <div className={styles.gameContainer} style={{display: loading ? 'none' : 'block'}}>
-                    <div>
+                    <div className={styles.gameInfo}>
                     <p>Level: {level}</p>
                     <p>Total Cards: {totalCards}</p>
                     </div>

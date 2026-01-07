@@ -16,8 +16,21 @@
     >p{
         color: #ffcc0a;
         font-weight: 700;
+        justify-self: center;
     }
     
     font-size: 2rem;
+}
+.gameInfo{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    >p{
+        color: #ffcc0a;
+        font-weight: 700;
+    }
 }
 

@@ -4,10 +4,6 @@ import { useState } from 'react'
 function PokemonCard({ pokemon, history, setHistory, isFlipped, setIsFlipped, totalCards }) {
 
     const [clickable, setClickable] = useState(true);
-    const [highScores, setHighScores] = useState(() => {
-        const savedScores = localStorage.getItem("highScores");
-        return savedScores ? JSON.parse(savedScores) : [];
-    });
     
   return (
     <>

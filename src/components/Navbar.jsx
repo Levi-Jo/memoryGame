@@ -19,12 +19,12 @@ function Navbar() {
               </li>
               <li>
                 <NavLink
-                  to="/about"
+                  to="/snap"
                   className={({ isActive }) =>
                     isActive ? `${styles.link} ${styles.active}` : styles.link
                   }
                 >
-                  About
+                  Snap
                 </NavLink>
               </li>
               <li>
