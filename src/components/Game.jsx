@@ -8,17 +8,20 @@ function Game({ level }) {
     const [history, setHistory] = useState([]);
     const [loading, setLoading] = useState(true);
     const [isFlipped, setIsFlipped] = useState(false);
-    const [totalCards, setTotalCards] = useState(12);
- 
-    useEffect(() => {
-        if(level === "Easy"){
-            setTotalCards(12);
-        }else if(level === "Medium"){
-            setTotalCards(18);
-        }else if(level === "Hard"){
-            setTotalCards(24);
-        }
-    }, [level]);
+    let totalCards;
+    switch(level){
+        case "easy":
+            totalCards = 6;
+            break;
+        case "medium":
+            totalCards = 12;
+            break;
+        case "hard":
+            totalCards = 18;
+            break;
+        default:
+            totalCards = 6;
+    }
     
         useEffect(() => {
         setLoading(true);
