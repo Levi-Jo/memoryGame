@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function Snap() {
-  return (
-    <div>Snap</div>
-  )
+  return <div>Snap</div>;
 }
 
-export default Snap
+export default Snap;

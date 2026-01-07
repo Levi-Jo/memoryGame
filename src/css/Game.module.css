@@ -1,36 +1,35 @@
-.cardGrid{
-    width:100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
-    gap: 1rem;
-    padding: 1rem;
-    justify-content: center;
-    align-items: center;
+.cardGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
 }
-.gameContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    padding: 2rem;
-    gap: 1rem;
-    >p{
-        color: #ffcc0a;
-        font-weight: 700;
-        justify-self: center;
-    }
-    
-    font-size: 2rem;
-}
-.gameInfo{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-bottom: 1rem;
-    padding: 0 1rem;
-    box-sizing: border-box;
-    >p{
-        color: #ffcc0a;
-        font-weight: 700;
-    }
-}
+.gameContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding: 2rem;
+  gap: 1rem;
+  > p {
+    color: #ffcc0a;
+    font-weight: 700;
+    justify-self: center;
+  }
 
+  font-size: 2rem;
+}
+.gameInfo {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  > p {
+    color: #ffcc0a;
+    font-weight: 700;
+  }
+}
