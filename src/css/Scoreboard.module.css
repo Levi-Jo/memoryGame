@@ -2,11 +2,9 @@
   position-anchor: --tab;
   position-area: top left;
   position: absolute;
-
-  max-height: 700px;
   display: flex;
+  max-height: 700px;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   background-color: black;
   border-radius: 15px;
@@ -15,9 +13,10 @@
   overflow-y: auto;
 }
 .table {
-  padding: 10%;
+  padding: 10px;
   border-collapse: collapse;
   text-align: center;
+
 }
 .th,
 .td {
@@ -46,3 +45,4 @@
   bottom: 10px;
   anchor-name: --tab;
 }
+

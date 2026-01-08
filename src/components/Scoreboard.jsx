@@ -19,7 +19,7 @@ function Scoreboard() {
           </button>
         </div>
         <div className={styles.scoreboardDiv}>
-          <h2>High Scores</h2>
+          <h2 className={styles.highScores}>High Scores</h2>
           <table className={styles.table}>
             <thead>
               <tr className={styles.trHead}>
