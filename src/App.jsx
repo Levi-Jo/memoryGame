@@ -1,4 +1,4 @@
-import React from "react";
+
 import Layout from "./components/Layouts/Layout.jsx";
 import GameLayout from "./components/Layouts/GameLayout.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -7,6 +7,7 @@ import HomePage from "./components/HomePage.jsx";
 import Snap from "./components/Snap.jsx";
 import Game from "./components/Game.jsx";
 function App() {
+
   return (
     <Router>
       <Routes>
@@ -16,9 +17,9 @@ function App() {
           <Route path="/contact" element={<h2>Contact Page</h2>} />
         </Route>
         <Route element={<GameLayout />}>
-          <Route path="/easy" element={<Game level="Easy" />} />
-          <Route path="/medium" element={<Game level="Medium" />} />
-          <Route path="/hard" element={<Game level="Hard" />} />
+          <Route path="/easy" element={<Game level='Easy'/>}/>
+          <Route path="/medium" element={<Game level='Medium'/>} />
+          <Route path="/hard" element={<Game level='Hard'/>}/>
         </Route>
       </Routes>
     </Router>

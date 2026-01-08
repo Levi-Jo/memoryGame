@@ -1,51 +1,62 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import styles from "../css/Scoreboard.module.css"
 function Scoreboard() {
-  const [highScores, setHighScores] = useState(JSON.parse(localStorage.getItem("highScores")));
+  const [highScores, ] = useState(JSON.parse(localStorage.getItem("highScores")));
+    const [openScore, setOpenScore]= useState(false)
 
   return (
     highScores.length > 0 && (
-      <div
-        style={{
-          marginTop: "20px",
-          padding: "10px",
-          border: "2px solid #000",
-          borderRadius: "8px",
-          backgroundColor: "#000000ff",
-        }}
+        openScore?(
+            <>
+            <div className={styles.tab}>
+            <button onClick={()=>{
+                setOpenScore(false)}}>Right Arrow </button>
+        </div>
+            <div
+        className={styles.scoreboardDiv}
       >
-        <h2 style={{ textAlign: "center" }}>High Scores</h2>
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+        <h2>High Scores</h2>
+        <table className={styles.table}>
           <thead>
-            <tr>
-              <th style={{ border: "1px solid #000", padding: "8px" }}>
-                Player
+            <tr className={styles.trHead}>
+              <th className={styles.th}>
+                <h2>Player</h2>
               </th>
-              <th style={{ border: "1px solid #000", padding: "8px" }}>
-                Score
+              <th className={styles.th}>
+                <h2>Score</h2>
               </th>
-              <th style={{ border: "1px solid #000", padding: "8px" }}>
-                Level
+              <th className={styles.th}>
+                <h2>Level</h2>
               </th>
             </tr>
           </thead>
           <tbody>
             {highScores.map((score, index) => (
-              <tr key={index}>
-                <td style={{ border: "1px solid #000", padding: "8px" }}>
-                  {score.player}
+              <tr key={index} className={styles.tr}>
+                <td className={styles.td}>
+                  <p>{score.player}</p>
                 </td>
-                <td style={{ border: "1px solid #000", padding: "8px" }}>
-                  {score.score}
+                <td className={styles.td}>
+                  <p>{score.score}</p>
                 </td>
-                <td style={{ border: "1px solid #000", padding: "8px" }}>
-                  {score.level}
+                <td className={styles.td}>
+                  <p>{score.level}</p>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+            </>
+      
+      ):(
+        <div className={styles.tab}>
+            <button onClick={()=>{
+                setOpenScore(true)}}>Left Arrow </button>
+        </div>
+      )
+
     )
   );
 }

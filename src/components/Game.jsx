@@ -9,20 +9,24 @@ function Game({ level }) {
   const [isFlipped, setIsFlipped] = useState(true);
   const [openDialog, setOpenDialog] = useState(false);
 
-  let totalCards;
+  let totalCards
   switch (level) {
     case "Easy":
       totalCards = 6;
       break;
     case "Medium":
-      totalCards = 12;
-      break;
-    case "Hard":
       totalCards = 18;
       break;
+    case "Hard":
+      totalCards = 30;
+      break;
     default:
-      totalCards = 6;
+     totalCards = 6;
+     break;
   }
+
+
+
 
   useEffect(() => {
     const controller = new AbortController();
@@ -105,7 +109,8 @@ function Game({ level }) {
     };
     scores.push(scoreObj);
     localStorage.setItem("highScores", JSON.stringify(scores));
-    setOpenDialog(false)
+    
+    parent.location='home'
   }
 
   return (
