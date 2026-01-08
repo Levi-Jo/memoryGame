@@ -88,7 +88,7 @@ function Game({ level }) {
         setIsFlipped(true);
       }, 1000);
     }
-  }, [history, pokemonCards]);
+  }, [history]);
 
   function saveScore(formData) {
     const player = formData.get("player");
