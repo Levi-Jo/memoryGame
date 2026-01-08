@@ -1,4 +1,3 @@
-
 import styles from "../css/Game.module.css";
 import PokemonCard from "./PokemonCard";
 import { useState, useEffect } from "react";
@@ -9,7 +8,7 @@ function Game({ level }) {
   const [isFlipped, setIsFlipped] = useState(true);
   const [openDialog, setOpenDialog] = useState(false);
 
-  let totalCards
+  let totalCards;
   switch (level) {
     case "Easy":
       totalCards = 6;
@@ -21,12 +20,9 @@ function Game({ level }) {
       totalCards = 30;
       break;
     default:
-     totalCards = 6;
-     break;
+      totalCards = 6;
+      break;
   }
-
-
-
 
   useEffect(() => {
     const controller = new AbortController();
@@ -82,7 +78,7 @@ function Game({ level }) {
 
     fetchPokemon();
     return () => controller.abort();
-  }, [totalCards]);
+  }, [totalCards, level]);
   useEffect(() => {
     if (pokemonCards.length > 0) {
       setIsFlipped(false);
@@ -92,12 +88,12 @@ function Game({ level }) {
         setIsFlipped(true);
       }, 1000);
     }
-  }, [history]);
+  }, [history, pokemonCards]);
 
   function saveScore(formData) {
     const player = formData.get("player");
     let scores;
-    if (localStorage.getItem("highScores") === null){
+    if (localStorage.getItem("highScores") === null) {
       scores = [];
     } else {
       scores = JSON.parse(localStorage.getItem("highScores"));
@@ -109,8 +105,8 @@ function Game({ level }) {
     };
     scores.push(scoreObj);
     localStorage.setItem("highScores", JSON.stringify(scores));
-    
-    parent.location='home'
+
+    parent.location = "home";
   }
 
   return (

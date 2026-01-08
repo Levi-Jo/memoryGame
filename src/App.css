@@ -66,6 +66,6 @@ main {
 input {
   color: black;
 }
-:focus{
-  outline: 2px #ffcc0a solid; 
+:focus {
+  outline: 2px #ffcc0a solid;
 }

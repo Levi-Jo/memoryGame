@@ -1,53 +1,48 @@
-.scoreboardDiv{
-    position-anchor: --tab;
-    position-area: top left;
-    position: absolute;
+.scoreboardDiv {
+  position-anchor: --tab;
+  position-area: top left;
+  position: absolute;
 
-    max-height: 700px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items:center;
-    background-color: black;
-    border-radius: 15px;
-    padding: 10px;
-    border: #ffcc0a 3px solid;
-    overflow-y: auto;
+  max-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  border-radius: 15px;
+  padding: 10px;
+  border: #ffcc0a 3px solid;
+  overflow-y: auto;
+}
+.table {
+  padding: 10%;
+  border-collapse: collapse;
+  text-align: center;
+}
+.th,
+.td {
+  padding: 15px;
+}
 
-    
-}
-.table{
-    padding:10%;
-    border-collapse: collapse;
-    text-align: center;
-}
-.th, .td{
-    padding:15px;
-}
-.td{
-
-}
-.tr:nth-child(even){
-    background-color: rgb(0, 0, 0);
-    >td{
-        >p{
-            color:#ffcc0a;
-            
-        }
+.tr:nth-child(even) {
+  background-color: rgb(0, 0, 0);
+  > td {
+    > p {
+      color: #ffcc0a;
     }
+  }
 }
-.tr:nth-child(odd){
-    background-color: #ffce0a;
-    >td{
-        >p{
-            color:black;
-            
-        }
+.tr:nth-child(odd) {
+  background-color: #ffce0a;
+  > td {
+    > p {
+      color: black;
     }
+  }
 }
-.tab{
-    position: fixed;
-    right:10px;
-    bottom: 10px;
-    anchor-name: --tab;
+.tab {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  anchor-name: --tab;
 }
