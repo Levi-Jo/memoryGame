@@ -12,7 +12,6 @@ function App() {
         <Route element={<Layout />}>
           <Route path="*" element={<HomePage />} />
           <Route path="/snap" element={<Snap />} />
-          <Route path="/contact" element={<h2>Contact Page</h2>} />
         </Route>
         <Route element={<GameLayout />}>
           <Route path="/easy" element={<Game level="Easy" />} />

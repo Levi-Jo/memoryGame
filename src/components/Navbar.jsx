@@ -27,16 +27,6 @@ function Navbar() {
               Snap
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/contact"
-              className={({ isActive }) =>
-                isActive ? `${styles.link} ${styles.active}` : styles.link
-              }
-            >
-              Contact
-            </NavLink>
-          </li>
         </ul>
       </nav>
     </header>

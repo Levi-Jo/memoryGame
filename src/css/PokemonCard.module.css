@@ -27,7 +27,6 @@
 }
 .back {
   width: 100%;
-  min-height: 150px;
   height: 100%;
   position-anchor: --card;
   position: absolute;
