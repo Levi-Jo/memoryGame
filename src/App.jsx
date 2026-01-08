@@ -11,10 +11,9 @@ function App() {
     <Router>
       <Routes>
         <Route element={<Layout />}>
-          <Route path="/home" element={<HomePage />} />
+          <Route path="*" element={<HomePage />} />
           <Route path="/snap" element={<Snap />} />
           <Route path="/contact" element={<h2>Contact Page</h2>} />
-          <Route path="*" element={<h2>404 Not Found</h2>} />
         </Route>
         <Route element={<GameLayout />}>
           <Route path="/easy" element={<Game level="Easy" />} />

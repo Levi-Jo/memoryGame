@@ -1,9 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 function Scoreboard() {
-  const [highScores, setHighScores] = useState(
-    JSON.parse(localStorage.getItem("highScores")) || [],
-  );
+  const [highScores, setHighScores] = useState(JSON.parse(localStorage.getItem("highScores")));
 
   return (
     highScores.length > 0 && (
@@ -13,7 +11,7 @@ function Scoreboard() {
           padding: "10px",
           border: "2px solid #000",
           borderRadius: "8px",
-          backgroundColor: "#f9f9f9",
+          backgroundColor: "#000000ff",
         }}
       >
         <h2 style={{ textAlign: "center" }}>High Scores</h2>

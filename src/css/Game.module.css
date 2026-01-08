@@ -33,3 +33,33 @@
     font-weight: 700;
   }
 }
+.endDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    >p{
+        font-size: 2rem;
+    }
+    >form{
+        display: flex;
+        gap: 50px;
+        >label{
+            font-size: 2rem;
+            background-color: black;
+            padding:10px;
+            border-radius: 15px;
+            &:focus-within{
+                outline:solid 2px #ffcc0a;
+            }
+            >input{
+            background-color: transparent;
+            border:none;
+            font-size: 2rem;
+            outline: none;
+            color: #ffcc0a;
+            }
+        }
+
+    }
+}

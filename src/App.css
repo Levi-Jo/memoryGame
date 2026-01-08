@@ -63,3 +63,9 @@ main {
     transform: rotate(360deg);
   }
 }
+input {
+  color: black;
+}
+:focus{
+  outline: 2px #ffcc0a solid; 
+}

@@ -9,7 +9,6 @@ function PokemonCard({
   setIsFlipped,
   totalCards,
   setOpenDialog,
-  openDialog,
 }) {
   const [clickable, setClickable] = useState(true);
 

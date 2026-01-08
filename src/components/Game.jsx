@@ -1,4 +1,4 @@
-import React from "react";
+
 import styles from "../css/Game.module.css";
 import PokemonCard from "./PokemonCard";
 import { useState, useEffect } from "react";
@@ -8,6 +8,7 @@ function Game({ level }) {
   const [loading, setLoading] = useState(true);
   const [isFlipped, setIsFlipped] = useState(true);
   const [openDialog, setOpenDialog] = useState(false);
+
   let totalCards;
   switch (level) {
     case "Easy":
@@ -88,60 +89,84 @@ function Game({ level }) {
       }, 1000);
     }
   }, [history]);
+
+  function saveScore(formData) {
+    const player = formData.get("player");
+    let scores;
+    if (localStorage.getItem("highScores") === null){
+      scores = [];
+    } else {
+      scores = JSON.parse(localStorage.getItem("highScores"));
+    }
+    const scoreObj = {
+      player: player,
+      score: history.length,
+      level: level,
+    };
+    scores.push(scoreObj);
+    localStorage.setItem("highScores", JSON.stringify(scores));
+    setOpenDialog(false)
+  }
+
   return (
     <>
-        {!openDialog?
-    <div>
-      <img
-        src="../src/assets/pokeball.png"
-        alt="Loading..."
-        className="Loading"
-        style={{ display: loading ? "block" : "none" }}
-      />
-      <div
-        className={styles.gameContainer}
-        style={{ display: loading ? "none" : "block" }}
-      >
-        <div className={styles.gameInfo}>
-          <p>Level: {level}</p>
-          <p>Total Cards: {totalCards}</p>
+      {!openDialog ? (
+        <div>
+          <img
+            src="../src/assets/pokeball.png"
+            alt="Loading..."
+            className="Loading"
+            style={{ display: loading ? "block" : "none" }}
+          />
+          <div
+            className={styles.gameContainer}
+            style={{ display: loading ? "none" : "block" }}
+          >
+            <div className={styles.gameInfo}>
+              <p>Level: {level}</p>
+              <p>Total Cards: {totalCards}</p>
+            </div>
+            <p>Score: {history.length}</p>
+            <div className={styles.cardGrid}>
+              {pokemonCards.length > 0 &&
+                pokemonCards.map((pokemon, index) => (
+                  <PokemonCard
+                    history={history}
+                    setHistory={setHistory}
+                    key={index}
+                    pokemon={pokemon}
+                    isFlipped={isFlipped}
+                    setIsFlipped={setIsFlipped}
+                    totalCards={totalCards}
+                    openDialog={openDialog}
+                    setOpenDialog={setOpenDialog}
+                  />
+                ))}
+            </div>
+          </div>
         </div>
-        <p>Score: {history.length}</p>
-        <div className={styles.cardGrid}>
-          {pokemonCards.length > 0 &&
-            pokemonCards.map((pokemon, index) => (
-              <PokemonCard
-                history={history}
-                setHistory={setHistory}
-                key={index}
-                pokemon={pokemon}
-                isFlipped={isFlipped}
-                setIsFlipped={setIsFlipped}
-                totalCards={totalCards}
-                openDialog={openDialog}
-                setOpenDialog={setOpenDialog}
-              />
-            ))}
-        </div>
-      </div>
-    </div>
-    :
-    <div>
-        <h2>Woah that was Okay, I guess...</h2>
-        <p>You got {history.length} out of {totalCards}</p>
-        <p>Enter your name below to be written down in LOCAL STORAGE!!</p>
+      ) : (
+        <div className={styles.endDiv}>
+          <h2>Woah that was Okay, I guess...</h2>
+          <p>
+            You got {history.length} out of {totalCards}
+          </p>
+          <p>Enter your name below to be written down in LOCAL STORAGE!!</p>
 
-        <form>
+          <form action={saveScore}>
             <label>
-                Name: <input type="text" name="name" placeholder="Ash Ketchum" ></input>
+              Name:{" "}
+              <input
+                type="text"
+                name="player"
+                placeholder="Ash Ketchum"
+              ></input>
             </label>
-            <button type="submit">Submit?</button>
-        </form>
-    </div>
-   
-        }
+            <button type="submit">Submit!</button>
+          </form>
+        </div>
+      )}
     </>
-
   );
 }
 
