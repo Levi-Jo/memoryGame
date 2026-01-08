@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import styles from "../css/Scoreboard.module.css";
 function Scoreboard() {
-  const [highScores] = useState(JSON.parse(localStorage.getItem("highScores")));
+  const [highScores, setHighScore] = useState([]);
+  useEffect(()=>{
+    if (localStorage.getItem("highScores") === null) {
+    setHighScore([]);
+    } else {
+      setHighScore(JSON.parse(localStorage.getItem("highScores")));
+    }
+  },[])
+
   const [openScore, setOpenScore] = useState(false);
 
   return (
