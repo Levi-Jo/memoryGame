@@ -4,12 +4,10 @@ import styles from "../css/Scoreboard.module.css";
 function Scoreboard() {
   const [highScores, setHighScore] = useState([]);
   useEffect(()=>{
-    if (localStorage.getItem("highScores") === null) {
-    setHighScore([]);
-    } else {
-      setHighScore(JSON.parse(localStorage.getItem("highScores")));
-    }
-  },[])
+    if (localStorage.getItem("highScores") !== null) {
+        let score = JSON.parse(localStorage.getItem("highScores"))
+    setHighScore(score);}
+  },[]);
 
   const [openScore, setOpenScore] = useState(false);
 
